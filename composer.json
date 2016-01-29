@@ -1,0 +1,6 @@
+{
+  "require": {
+    "sgrodzicki/pagespeed": "~2.0",
+    "koalamon/koalamonclient": "dev-master"
+  }
+}

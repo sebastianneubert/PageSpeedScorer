@@ -1,0 +1,19 @@
+{
+  "directories": ["vendor"],
+  "main": "bin/PageSpeedScorer.php",
+  "output": "bin/PageSpeedScorer.phar",
+  "chmod": "0755",
+  "stub": true,
+  "finder": [
+    {
+      "name": "*.php",
+      "exclude": [
+        "Tests",
+        "tests",
+        "example",
+        "test"
+      ],
+      "in": "vendor"
+    }
+  ]
+}
