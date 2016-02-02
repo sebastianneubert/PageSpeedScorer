@@ -37,7 +37,7 @@ if ($pageSpeedScore < $limit) {
     $message = "";
 }
 
-$event = new \Koalamon\Client\Reporter\Event('pagespeed_' . $url, $system, $status, 'pagespeedscore', $message, $pageSpeedScore, $url);
+$event = new \Koalamon\Client\Reporter\Event('pagespeed_' . $url, $system, $status, 'pagespeedscore', $message, $pageSpeedScore, $pageSpeedUrl);
 $reporter->sendEvent($event);
 
 echo "\n    $message\n\n";
