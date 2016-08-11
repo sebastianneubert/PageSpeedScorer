@@ -34,10 +34,15 @@ if ($pageSpeedScore < $limit) {
     $message = "Page Speed Score low (" . $pageSpeedScore . ").";
 } else {
     $status = \Koalamon\Client\Reporter\Event::STATUS_SUCCESS;
-    $message = "";
+    $message = "Page Speed Score is " . $pageSpeedScore . ".";;
 }
 
 $event = new \Koalamon\Client\Reporter\Event('pagespeed_' . $url, $system, $status, 'pagespeedscore', $message, $pageSpeedScore, $pageSpeedUrl);
-$reporter->sendEvent($event);
+
+try {
+    $reporter->sendEvent($event);
+} catch (\GuzzleHttp\Exception\ServerException $e) {
+    var_dump((string)$e->getResponse()->getBody());
+}
 
 echo "\n    $message\n\n";
