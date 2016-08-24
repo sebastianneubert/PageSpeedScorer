@@ -24,7 +24,13 @@ if ($argv[5]) {
 }
 
 $pageSpeed = new \PageSpeed\Insights\Service();
-$psResult = $pageSpeed->getResults($url);
+try {
+    $psResult = $pageSpeed->getResults($url);
+} catch (\Exception $e) {
+    echo "\nError: " . $e->getMessage();
+    exit(1);
+}
+
 $pageSpeedScore = $psResult["ruleGroups"]["SPEED"]["score"];
 
 $pageSpeedUrl = "https://developers.google.com/speed/pagespeed/insights/?url=" . $url;
@@ -43,6 +49,7 @@ try {
     $reporter->sendEvent($event);
 } catch (\GuzzleHttp\Exception\ServerException $e) {
     var_dump((string)$e->getResponse()->getBody());
+    exit(1);
 }
 
 echo "\n    $message\n\n";
